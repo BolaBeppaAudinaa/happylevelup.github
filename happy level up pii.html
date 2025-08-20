@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy level up pipi 🌸</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Animate on Scroll -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg1: #fce7f3;
+      --bg2: #e0f2fe;
+      --glass: rgba(255,255,255,0.2);
+      --dark: #3b0764;
+      --primary: #a855f7;
+      --secondary: #0ea5e9;
+    }
+
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      color: var(--dark);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* === NAVBAR === */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      padding: 18px 30px;
+      background: var(--glass);
+      backdrop-filter: blur(14px);
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: 0.3s;
+      padding: 6px 16px;
+      border-radius: 12px;
+    }
+    nav a.active, nav a:hover {
+      background: rgba(255,255,255,0.7);
+      color: var(--primary);
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 120px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* === BANNER PARALLAX === */
+    #banner {
+      background: url("home.png") center/cover fixed;
+      color: white;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    }
+    #banner h1 {
+      font-size: 5rem;
+      font-family: 'Sacramento', cursive;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+    #banner p {
+      font-size: 1.4rem;
+      opacity: 0.95;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* === UCAPAN CARD GLASS === */
+    #ucapan .card {
+      max-width: 800px;
+      background: var(--glass);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      backdrop-filter: blur(18px);
+      font-size: 1.3rem;
+      line-height: 2rem;
+      color: var(--dark);
+    }
+
+    /* === GALERI FOTO === */
+    #galeri h2 {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+      max-width: 1100px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      transition: transform 0.6s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background: rgba(0,0,0,0.8);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      z-index:2000;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(255,255,255,0.5);
+    }
+
+    /* === PENUTUP === */
+    #penutup {
+      position: relative;
+      background: linear-gradient(135deg, #f3e8ff, #e0f2fe);
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+      padding-top: 100px;
+      overflow: hidden;
+    }
+    #penutup h2 {
+      font-size: 2.7rem;
+      margin-bottom: 20px;
+      font-family: 'Sacramento', cursive;
+      color: var(--primary);
+    }
+    #penutup p {
+      font-size: 1.3rem;
+      opacity: 0.85;
+    }
+
+    /* Stars Effect */
+    .star {
+      position: absolute;
+      width: 3px; height: 3px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 3s infinite;
+    }
+    @keyframes twinkle {
+      0%,100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #444;
+      background: #fdf4ff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- === NAVBAR === -->
+  <nav>
+    <a href="#banner" class="active">Home</a>
+    <a href="#ucapan">Ucapan</a>
+    <a href="#galeri">Galeri</a>
+    <a href="#penutup">Penutup</a>
+  </nav>
+
+  <!-- === BANNER === -->
+  <section id="banner" data-aos="fade-up">
+    <h1>✨ happy level up pipi ✨</h1>
+    <p>“Today is your day — a chapter of joy, love, and endless smiles.” 🌸</p>
+  </section>
+
+  <!-- === UCAPAN === -->
+  <section id="ucapan" data-aos="fade-right">
+    <div class="card">
+      happy level up!🎂💖 <br>
+       "Today is all about you — your smile, your happiness, and the beautiful memories we share. May your day be filled with laughter, warm hugs, and all the little things that make life wonderful. You deserve nothing less than pure joy, not just today, but every day ahead. Shine bright, because the world is better with you in it."✨<br>  
+    </div>
+  </section>
+
+  <!-- === GALERI FOTO === -->
+  <section id="galeri" data-aos="zoom-in">
+    <h2>📸 It’s your day</h2>
+    <div class="gallery">
+      <img src="pipi.png" alt="foto1">
+      <img src="piii.png" alt="foto2">
+      <img src="pii.png" alt="foto3">
+      <img src="pi.png" alt="foto4">
+    </div>
+  </section>
+
+  <!-- === PENUTUP === -->
+  <section id="penutup" data-aos="fade-up">
+    <h2>🌙  “Your day, your story, your glow.” 🌙</h2>
+    <p>
+    love u banya" buat pipi💫<br>
+     
+    </p>
+  </section>
+
+  <footer>
+    vivi adelia yahya
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="preview">
+  </div>
+
+  <!-- === JAVASCRIPT SCROLLSPY === -->
+  <script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 250;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+
+    // Lightbox
+    const galleryImages = document.querySelectorAll(".gallery img");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = lightbox.querySelector("img");
+
+    galleryImages.forEach(img => {
+      img.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+      });
+    });
+
+    lightbox.addEventListener("click", () => {
+      lightbox.style.display = "none";
+    });
+
+    // Stars random
+    const penutup = document.getElementById("penutup");
+    for (let i = 0; i < 40; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.top = Math.random() * 100 + "%";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.animationDuration = (2 + Math.random() * 3) + "s";
+      penutup.appendChild(star);
+    }
+  </script>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1300,
+      once: true
+    });
+  </script>
+</body>
+</html>
